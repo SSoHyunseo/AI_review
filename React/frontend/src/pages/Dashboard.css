@@ -1,0 +1,40 @@
+.dashboard-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* 내부 요소들을 가로 가운데 정렬 */
+
+  padding: 20px;
+  font-family: Arial, sans-serif;
+  background-color: #f8f8f8;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  min-width: 400px;
+
+  /* 박스 자체를 가로로 가운데 정렬 */
+  margin: 0 auto;
+}
+
+.button-group {
+  margin-top: 20px;
+}
+
+.message-box {
+  margin-top: 20px;
+  /* 가로 중앙 정렬 */
+  margin: 20px auto;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  min-height: 50px;
+  width: 300px;
+  text-align: center;
+}
+
+.user-message {
+  color: green;
+}
+
+.admin-message {
+  color: red;
+}

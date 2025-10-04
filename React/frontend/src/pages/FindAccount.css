@@ -1,0 +1,100 @@
+/* 전체 컨테이너 */
+.find-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100%;
+
+  /* background-color: #f7f8fa; */
+}
+
+/* 박스 */
+.find-box {
+  background: #fff;
+  padding: 2rem 3rem;
+  border-radius: 16px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+  width: 400px;
+  text-align: center;
+}
+
+/* 제목 */
+.find-box h2 {
+  margin-bottom: 1rem;
+  font-size: 1.6rem;
+  color: #333;
+}
+
+/* 탭 버튼 */
+.tab-buttons {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 1rem;
+}
+
+.tab-buttons button {
+  flex: 1;
+  padding: 10px;
+  background: #eee;
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 8px;
+  margin: 0 5px;
+  transition: all 0.3s ease;
+}
+
+.tab-buttons button.active {
+  background: #000000;
+  color: #fff;
+}
+
+/* 입력 필드 */
+.find-box input {
+  width: 100%;
+  padding: 12px 15px;
+  margin: 0.5rem 0;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  font-size: 1rem;
+}
+
+.find-box input:focus {
+  outline: none;
+  border-color: #000000;
+  box-shadow: 0 0 4px rgba(136, 132, 216, 0.5);
+}
+
+/* 버튼 */
+.find-box button[type="submit"] {
+  width: 100%;
+  padding: 12px;
+  margin-top: 1rem;
+  background: #000000;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.find-box button[type="submit"]:hover {
+  background: #000000;
+}
+
+/* 뒤로가기 링크 */
+.back-link {
+  margin-top: 1rem;
+}
+
+.back-link a {
+  color: #000000;
+  font-size: 0.9rem;
+  text-decoration: none;
+}
+
+.back-link a:hover {
+  text-decoration: underline;
+}

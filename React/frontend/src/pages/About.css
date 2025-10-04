@@ -1,0 +1,43 @@
+ /* 프로젝트 간단 소개 */
+
+
+ .about-container {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+ }
+
+ .about-box {
+   max-width: 700px;
+   margin-top: 100px;
+   padding: 30px;
+   text-align: center;
+   background: #fff;
+   border-radius: 12px;
+   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+ }
+
+ .about-box h2 {
+   margin-bottom: 20px;
+   font-size: 28px;
+ }
+
+ .about-box p {
+   margin-bottom: 15px;
+   line-height: 1.6;
+   font-size: 16px;
+ }
+
+ .back-button {
+   margin-top: 20px;
+   padding: 10px 20px;
+   background: #000000;
+   color: white;
+   border: none;
+   border-radius: 6px;
+   cursor: pointer;
+ }
+
+ .back-button:hover {
+   background: #000000;
+ }

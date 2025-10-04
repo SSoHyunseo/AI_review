@@ -1,0 +1,87 @@
+.contact-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+
+  align-items: center;
+}
+
+.contact-box {
+  width: 500px;
+  margin-top: 80px;
+  padding: 20px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  text-align: left;
+
+}
+
+.contact-box h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 24px;
+}
+
+.contact-box label {
+  display: block;
+  margin: 10px 0 5px;
+  font-weight: bold;
+}
+
+.contact-box input,
+.contact-box textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+
+}
+
+.contact-box textarea {
+  height: 100px;
+  resize: none;
+
+
+}
+
+.contact-box button {
+  width: 100%;
+  padding: 10px;
+  background: #000000;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+
+}
+
+.contact-box button:hover {
+  background: #000000;
+}
+
+.inquiry-list {
+  margin-top: 40px;
+  width: 500px;
+}
+
+.inquiry-list h3 {
+  margin-bottom: 10px;
+  text-align: left;
+
+}
+
+.inquiry-list ul {
+  list-style: none;
+  padding: 0;
+  text-align: left;
+
+}
+
+.inquiry-list li {
+  margin-bottom: 8px;
+  font-size: 16px;
+
+}

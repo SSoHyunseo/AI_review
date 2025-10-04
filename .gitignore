@@ -1,0 +1,19 @@
+# Python venv
+.venv/
+venv/
+__pycache__/
+
+# Java build
+target/
+*.jar
+*.war
+
+
+# Mac files
+.DS_Store
+
+# 기타 IDE 설정
+.idea/
+*.iml
+
+

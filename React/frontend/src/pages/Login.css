@@ -1,0 +1,221 @@
+/* 전체 컨테이너 */
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  /* 너비를 100%로 설정 */
+  height: 80vh;
+  /* background-color: #f7f8fa; */
+}
+
+/* 로그인 박스 */
+.login-box {
+  background: #fff;
+  padding: 2rem 3rem;
+  border-radius: 16px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+  width: 360px;
+  text-align: center;
+}
+
+/* 제목 */
+.login-box h2 {
+  margin-bottom: 1.5rem;
+  font-size: 1.8rem;
+  color: #333;
+}
+
+/* 입력 필드 */
+.login-box input {
+  width: 100%;
+  padding: 12px 15px;
+  margin: 0.5rem 0;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  font-size: 1rem;
+  transition: all 0.2s ease;
+}
+
+.login-box input:focus {
+  outline: none;
+  border-color: #000000;
+  box-shadow: 0 0 4px rgba(136, 132, 216, 0.5);
+}
+
+/* 버튼 */
+.login-box button {
+  width: 100%;
+  padding: 12px;
+  margin-top: 1rem;
+  background: #000000;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.login-box button:hover {
+  background: #555;
+}
+
+/* 회원가입 링크 */
+.signup-link {
+  margin-top: 1rem;
+  font-size: 0.9rem;
+  color: #555;
+}
+
+.signup-link a {
+  color: #000000;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.signup-link a:hover {
+  text-decoration: underline;
+}
+
+.extra-links {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.extra-links a {
+  font-size: 0.9rem;
+  color: #000000;
+  text-decoration: none;
+}
+
+.extra-links a:hover {
+  text-decoration: underline;
+}
+
+:root {
+  --main-bg: #f9fafa;
+  --sidebar-bg: #eef1f5;
+  --accent: #000000;
+  --text: #333;
+  --border: #d4dbe0;
+  --white: #ffffff;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+
+/* --- 상단바 스타일 수정 --- */
+.nav-menu a {
+  position: relative;
+  display: inline-block;
+  color: transparent;
+  text-decoration: none;
+  font-weight: 500;
+  line-height: 60px;
+  width: 60px;
+  text-align: center;
+}
+
+.nav-menu a img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  /* 70% -> 50%로 변경하여 중앙 정렬 */
+  transform: translate(-50%, -50%);
+  width: 29px;
+  height: auto;
+  display: block;
+  pointer-events: none;
+  z-index: 5;
+}
+
+.nav-menu a:hover img {
+  display: none;
+}
+
+.nav-menu a:hover {
+  color: #000;
+}
+
+/* ------------------------ */
+
+
+/* Main Content Styles */
+main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  text-align: center;
+  margin-top: 60px;
+}
+
+/* Home Page Specific */
+.hero {
+  background-image: url('hero.jpg');
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background-color: rgba(0, 0, 0, 0.4);
+  background-blend-mode: overlay;
+  color: white;
+}
+
+.hero h1 {
+  font-size: 6rem;
+  margin-bottom: 1rem;
+  letter-spacing: 2px;
+}
+
+.hero p {
+  font-size: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.hero button {
+  padding: 0.8rem 2rem;
+  font-size: 1rem;
+  border: none;
+  border-radius: 5px;
+  background-color: white;
+  color: black;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin: 0.5rem;
+}
+
+.hero button:hover {
+  background-color: #f0f0f0;
+}
+
+.section {
+  padding: 4rem 2rem;
+  text-align: center;
+  background-color: #f9f9f9;
+  color: black;
+  font-family: 'IBM Plex Sans KR', sans-serif;
+}
+
+.section h2 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.section p {
+  font-size: 1.2rem;
+  max-width: 700px;
+  margin: 0 auto;
+}
