@@ -7,7 +7,7 @@ const api = axios.create({
 // 모든 요청에 JWT 토큰을 자동으로 추가하는 인터셉터
 api.interceptors.request.use(
   (config) => {
-    const token = localStorage.getItem('token');
+    const token = sessionStorage.getItem('token');
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
     }

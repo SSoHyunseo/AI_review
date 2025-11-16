@@ -50,14 +50,13 @@ public class History {
 
   private String judgment;
 
+  @Lob
+  @Column(name = "result_details", columnDefinition = "TEXT")
+  private String resultDetails;
+
   @CreationTimestamp
   @Column(name = "created_at", updatable = false)
   private LocalDateTime createdAt;
-
-  // // Setter for user
-  // public void setUser(User user) {
-  // this.user = user;
-  // }
 
   // --- DTO 변환을 위한 정적 메서드 ---
   public static History from(User user, com.example.adbye.dto.HistoryDto.HistoryRequestDto requestDto) {
@@ -70,6 +69,7 @@ public class History {
         .adKeywords(requestDto.getAdKeywords())
         .nonAdKeywords(requestDto.getNonAdKeywords())
         .judgment(requestDto.getJudgment())
+        .resultDetails(requestDto.getResultDetails())
         .build();
   }
 
@@ -83,6 +83,7 @@ public class History {
         .adKeywords(this.adKeywords)
         .nonAdKeywords(this.nonAdKeywords)
         .judgment(this.judgment)
+        .resultDetails(this.resultDetails)
         .createdAt(this.createdAt)
         .build();
   }

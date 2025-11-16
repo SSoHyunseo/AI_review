@@ -75,7 +75,7 @@ function ReviewApp() {
   const API_BASE = "http://localhost:8080";
 
   const navigate = useNavigate();
-  const isLoggedIn = !!localStorage.getItem("token");
+  const isLoggedIn = !!sessionStorage.getItem("token");
   const textareaRef = useRef(null);
 
   const categories = [
@@ -98,7 +98,7 @@ function ReviewApp() {
   }, [review]);
 
   const handleLogout = () => {
-    localStorage.removeItem("token");
+    sessionStorage.removeItem("token");
     alert("로그아웃되었습니다.");
     navigate("/");
   };
@@ -121,7 +121,7 @@ function ReviewApp() {
     // setShowSimilar(false); 
 
     try {
-      const token = localStorage.getItem("token");
+      const token = sessionStorage.getItem("token");
       const headers = { "Content-Type": "application/json" };
       if (token) {
         headers['Authorization'] = `Bearer ${token}`;
@@ -356,10 +356,10 @@ function ReviewApp() {
 
                         <div className="feedback-buttons">
                           <button onClick={() => handleFeedback(true, data)}>
-                            👍 추천
+                            👍 유용해요
                           </button>
                           <button onClick={() => handleFeedback(false, data)}>
-                            👎 비추천
+                            👎 별로에요
                           </button>
                         </div>
                       </div>

@@ -12,7 +12,8 @@ function Login() {
     e.preventDefault();
     try {
       const response = await axios.post('http://localhost:8080/api/auth/login', { username, password });
-      localStorage.setItem('token', response.data.token);
+      sessionStorage.setItem('token', response.data.token);
+      sessionStorage.setItem('username', username); // 사용자 이름 저장
       alert('로그인에 성공했습니다.');
       navigate('/review');
     } catch (error) {

@@ -4,10 +4,10 @@ import "./App.css"; // Layout.js는 이 파일의 스타일을 사용합니다.
 
 function Layout() {
   const navigate = useNavigate();
-  const isLoggedIn = !!localStorage.getItem("token");
+  const isLoggedIn = !!sessionStorage.getItem("token");
 
   const handleLogout = () => {
-    localStorage.removeItem("token");
+    sessionStorage.removeItem("token");
     alert("로그아웃되었습니다.");
     navigate("/");
   };

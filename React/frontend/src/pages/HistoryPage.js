@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import ResultPanel from '../ResultPanel'; // ResultPanel을 가져옵니다.
 
 const HistoryPage = () => {
   const [history, setHistory] = useState([]);
@@ -8,6 +9,7 @@ const HistoryPage = () => {
   const navigate = useNavigate();
   const [groupedHistory, setGroupedHistory] = useState({});
   const [expandedDate, setExpandedDate] = useState(null);
+  const [expandedHistoryId, setExpandedHistoryId] = useState(null); // 상세 보기 상태
   const [error, setError] = useState('');
   const effectRan = useRef(false);
 
@@ -16,11 +18,8 @@ const HistoryPage = () => {
 
     const fetchHistory = async () => {
       try {
-        const token = localStorage.getItem('token');
-        if (!token) {
-          // setError('로그인이 필요합니다.');
-          // setLoading(false);
-          alert('로그인이 필요한 서비스입니다.'); // 회원가입 또는 로그인 후 이용해주세요.
+                        const token = sessionStorage.getItem('token');        if (!token) {
+          alert('로그인이 필요한 서비스입니다.');
           navigate('/login');
           return;
         }
@@ -34,7 +33,6 @@ const HistoryPage = () => {
         const sortedHistory = response.data.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
         setHistory(sortedHistory);
 
-        // 날짜별로 그룹화
         const grouped = sortedHistory.reduce((acc, item) => {
           const date = new Date(item.createdAt).toLocaleDateString('ko-KR');
           if (!acc[date]) {
@@ -59,7 +57,6 @@ const HistoryPage = () => {
 
     fetchHistory();
 
-    // StrictMode에서 두 번 실행되는 것을 방지하기 위한 클린업 함수
     return () => {
       effectRan.current = true;
     };
@@ -67,6 +64,10 @@ const HistoryPage = () => {
 
   const toggleDate = (date) => {
     setExpandedDate(expandedDate === date ? null : date);
+  };
+
+  const toggleHistoryDetails = (historyId) => {
+    setExpandedHistoryId(expandedHistoryId === historyId ? null : historyId);
   };
 
   if (loading) {
@@ -100,9 +101,13 @@ const HistoryPage = () => {
                       </div>
                       <div style={styles.cardBody}>
                         <p><strong>입력 리뷰:</strong> {item.inputReview}</p>
-                        <p><strong>판단:</strong> <span style={{ color: item.judgment === '광고성' ? 'red' : 'green' }}>{item.judgment}</span></p>
-                        <p><strong>유사도 점수:</strong> {item.similarityScore.toFixed(2)}</p>
-                        <p><strong>가장 유사한 광고 리뷰:</strong> {item.mostSimilarReview}</p>
+                        <p><strong>판단:</strong> <strong><span style={{ color: item.judgment === '광고성' ? 'red' : 'green' }}>{item.judgment}</span></strong></p>
+                        <button onClick={() => toggleHistoryDetails(item.historyId)} style={styles.detailButton}>
+                          {expandedHistoryId === item.historyId ? '숨기기' : '상세 보기'}
+                        </button>
+                        {expandedHistoryId === item.historyId && (
+                          <ResultPanel result={item.resultDetails} />
+                        )}
                       </div>
                     </div>
                   ))}
@@ -116,7 +121,6 @@ const HistoryPage = () => {
   );
 };
 
-// 간단한 스타일 객체
 const styles = {
   container: { padding: '20px', fontFamily: 'Arial, sans-serif', maxWidth: '800px', margin: '0 auto' },
   header: { textAlign: 'center', marginBottom: '30px' },
@@ -132,6 +136,15 @@ const styles = {
   category: { fontWeight: 'bold', backgroundColor: '#f0f0f0', padding: '5px 10px', borderRadius: '12px' },
   date: { fontSize: '14px', color: '#888' },
   cardBody: { display: 'flex', flexDirection: 'column', gap: '8px' },
+  detailButton: {
+    padding: '8px 12px',
+    border: 'none',
+    borderRadius: '6px',
+    backgroundColor: '#0c8c2cff',
+    color: 'white',
+    cursor: 'pointer',
+    alignSelf: 'flex-start'
+  },
 };
 
 export default HistoryPage;

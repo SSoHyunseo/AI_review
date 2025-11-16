@@ -31,8 +31,7 @@ function Dashboard() {
   };
 
   const handleLogout = () => {
-    localStorage.removeItem('token');
-    navigate('/login');
+            sessionStorage.removeItem('token');    navigate('/login');
   };
 
   return (

@@ -20,6 +20,18 @@ public class HistoryDto {
     private String adKeywords;
     private String nonAdKeywords;
     private String judgment;
+    private String resultDetails;
+
+    public HistoryRequestDto(String category, String inputReview, double similarityScore, String mostSimilarReview, String adKeywords, String nonAdKeywords, String judgment, String resultDetails) {
+        this.category = category;
+        this.inputReview = inputReview;
+        this.similarityScore = similarityScore;
+        this.mostSimilarReview = mostSimilarReview;
+        this.adKeywords = adKeywords;
+        this.nonAdKeywords = nonAdKeywords;
+        this.judgment = judgment;
+        this.resultDetails = resultDetails;
+    }
   }
 
   @Getter
@@ -35,6 +47,7 @@ public class HistoryDto {
     private String adKeywords;
     private String nonAdKeywords;
     private String judgment;
+    private String resultDetails;
     private LocalDateTime createdAt;
   }
 }

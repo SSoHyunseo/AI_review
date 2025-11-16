@@ -9,8 +9,7 @@ function ContactUser() {
   const [inquiries, setInquiries] = useState([]);
 
   // 로그인된 사용자 이름 가져오기 (JWT에서 가져온다고 가정)
-  const username = localStorage.getItem("username");
-
+      const username = sessionStorage.getItem("username");
   useEffect(() => {
     if (username) {
       axios.get(`/api/inquiries/user/${username}`)

@@ -8,10 +8,9 @@ function ContactButton() {
       const res = await fetch("http://localhost:8080/api/auth/role", {
         method: "GET",
         credentials: "include", // 세션/쿠키 유지
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("token")}` // JWT 사용 시
-        }
-      });
+              headers: {
+                Authorization: `Bearer ${sessionStorage.getItem("token")}` // JWT 사용 시
+              }      });
       const data = await res.json();
 
       if (data.role === "ROLE_ADMIN") {

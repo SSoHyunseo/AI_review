@@ -5,6 +5,7 @@ import java.util.stream.Collectors;
 
 import com.example.adbye.dto.HistoryDto;
 import com.example.adbye.service.HistoryService;
+import com.example.adbye.service.ReviewService;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
@@ -27,6 +28,7 @@ public class ReviewController {
     // FastApi 서버와 통신하는 틀라이언트 (리뷰 분석 요청 및 결과 수신
     private final FastApiClient fastApiClient;
     private final HistoryService historyService;
+    private final ReviewService reviewService; // ✅ ReviewService 필드 추가
 
     // 카테고리 매핑
     private static final Map<String, String> categoryMap = new HashMap<>();
@@ -37,13 +39,17 @@ public class ReviewController {
         categoryMap.put("생활주방", "Household/kitchen");
         categoryMap.put("유아동", "Childbirth/indolder");
         categoryMap.put("문구오피스", "Toy/Stationery");
+        categoryMap.put("스포츠레저", "Sports/Leisure");
+        categoryMap.put("가전디지털", "HomeAppliance/Digital");
+
     }
 
     public ReviewController(ReviewsRepository reviewsRepository, FastApiClient fastApiClient,
-            HistoryService historyService) {
+            HistoryService historyService, ReviewService reviewService) {
         this.reviewsRepository = reviewsRepository;
         this.fastApiClient = fastApiClient;
         this.historyService = historyService;
+        this.reviewService = reviewService;
     }
 
     @PostMapping("/check")
@@ -58,12 +64,11 @@ public class ReviewController {
         }
 
         List<Reviews> adReviewsEntities;
-        // 카테고리가 지정되었고, '스포츠레저'나 '가전디지털'이 아닌 경우 해당 카테고리에서 검색
-        if (category != null && !category.isEmpty() && !"스포츠레저".equals(category) && !"가전디지털".equals(category)) {
+        if (category != null && !category.isEmpty()) {
             String dbCategory = categoryMap.get(category);
             adReviewsEntities = reviewsRepository.findByCategoryAndLabel(dbCategory, 1);
         } else {
-            // 카테고리가 없거나 '스포츠레저', '가전디지털'인 경우 전체 DB에서 검색
+            // 카테고리가 없는 경우에만 전체 DB에서 검색
             adReviewsEntities = reviewsRepository.findAllByLabel(1);
         }
 
@@ -89,6 +94,9 @@ public class ReviewController {
                 analyzeResponse.getSimilarityScore(), mostSimilarOriginalReview, analyzeResponse.getAdKeywords(),
                 analyzeResponse.getNonAdKeywords(), analyzeResponse.getDecision());
 
+        // 분석 결과를 바탕으로 사용자 리뷰를 DB에 저장 (점수 기준)
+        reviewService.saveReviewBasedOnAnalysis(userReview, category, finalResponse);
+
         // 로그인한 사용자인 경우에만 히스토리 저장
         if (username != null) {
             HistoryDto.HistoryRequestDto historyRequestDto = new HistoryDto.HistoryRequestDto(
@@ -98,7 +106,8 @@ public class ReviewController {
                     finalResponse.getMostSimilarAdReview(), // 원문 리뷰를 히스토리에 저장
                     finalResponse.getAdKeywords() != null ? String.join(", ", finalResponse.getAdKeywords()) : "",
                     finalResponse.getNonAdKeywords() != null ? String.join(", ", finalResponse.getNonAdKeywords()) : "",
-                    finalResponse.getDecision());
+                    finalResponse.getDecision(),
+                    "");
             historyService.saveHistory(username, historyRequestDto);
         }
 
